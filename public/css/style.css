@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	background-image: url("../img/back.jpg");
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.btn-space{
+	margin-right: 10px;
+	border-radius: 5px;
+}
+
+.form{
+	text-align: left;
+	padding: 20px; 
+}
+
+.form-control{
+	background: rgba(0,0,0,0.2);
+	border: 0px;
+	border-radius: 5px;
+	margin-top: 5px;
+	height: 40px;
+	font-size: 18px;
+	color: white;
+}
+
+.box{
+	background: transparent;
+	box-shadow: -1px 1px 50px 10px black;
+	border-radius: 15px;
+	margin-top: 100px;
+}
