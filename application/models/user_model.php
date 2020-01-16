@@ -637,11 +637,7 @@ class user_model extends CI_Model
 		$this->db->insert("pin",$data);
 	}
 
-	function get_pin(){
-		return $this->db->get('pin');
-	}
-
-
+	
 
 
 

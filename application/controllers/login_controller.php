@@ -1715,40 +1715,40 @@ class login_controller extends CI_Controller
 
 	}
 	public function login_pin(){
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('pin', 'Pin', 'required');
+		// $this->load->library('form_validation');
+		// $this->form_validation->set_rules('pin', 'Pin', 'required');
 
-		$_SESSION['Rpin']=$this->input->post("Rpin");
+		// $_SESSION['Rpin']=$this->input->post("Rpin");
 
-		if($this->input->post("pinsubmit")){
-			include './public/PHPMailer/PHPMailerAutoload.php';
+		// if($this->input->post("pinsubmit")){
+		// 	include './public/PHPMailer/PHPMailerAutoload.php';
 
-				$mail=new PHPMailer();
-				$mail->isSMTP();
-				$mail->SMTPAuth = true;
-				$mail->SMTPSecure = 'ssl';
-				$mail->Host = 'smtp.gmail.com';
-				$mail->Port = '465';
-				$mail->isHTML();
-				$mail->Username = 'mrdoc.dms@gmail.com';
-				$mail->Password='mrdoc100100100';
-				$mail->setFrom('noreply@example.com');
-				$mail->Subject="asa";
-				$mail->Body="asdad";
-				$mail->AddAddress("sachiejayen@gmail.com");
-				$mail->Send();
+		// 		$mail=new PHPMailer();
+		// 		$mail->isSMTP();
+		// 		$mail->SMTPAuth = true;
+		// 		$mail->SMTPSecure = 'ssl';
+		// 		$mail->Host = 'smtp.gmail.com';
+		// 		$mail->Port = '465';
+		// 		$mail->isHTML();
+		// 		$mail->Username = 'mrdoc.dms@gmail.com';
+		// 		$mail->Password='mrdoc100100100';
+		// 		$mail->setFrom('noreply@example.com');
+		// 		$mail->Subject="asa";
+		// 		$mail->Body="asdad";
+		// 		$mail->AddAddress("sachiejayen@gmail.com");
+		// 		$mail->Send();
 
-		}
+		// }
 
-		if($this->input->post("submitc")){
-			if($this->input->post("Rpin")==$this->input->post("pin")){
+		// if($this->input->post("submitc")){
+		// 	if($this->input->post("Rpin")==$this->input->post("pin")){
 				redirect(base_url()."login_controller/changeP");
-			}
-			else{
-				redirect(base_url()."login_controller/fogotP");
-			}
+		// 	}
+		// 	else{
+		// 		redirect(base_url()."login_controller/fogotP");
+		// 	}
 		
-		}
+		// }
 		// emil---------------------------------------------------------------------------------------------------------------------------------
 	
 
@@ -1757,42 +1757,42 @@ class login_controller extends CI_Controller
 	
 	public function fogotP(){
 		$this->load->view('fogotpwd');
+
 		
 	}
 	public function changeP(){
 		$this->load->view('changepwd');
+
 	}
 
 	public function change_pwd(){
 		$this->load->library('form_validation');
         $this->form_validation->set_rules('username', 'Username', 'required');
-		$this->form_validation->set_rules('npassward', 'New_Password', 'required');
-		$this->form_validation->set_rules('cpassword', 'Confirm_Password', 'required');
+		$this->form_validation->set_rules('npassword', 'New_Password', 'required');
+		$this->form_validation->set_rules('cpassword', 'Confirm_Password', 'required | matches [npassword]');
 
-	}
+		
 
+		if( $this->form_validation->run()){
+			$this->load->model('user_model');
+			$data = array(
+				"username" => $this -> input -> post("username"),
+				"password" => md5($this->input->post("npassward"))
+			);
 
+			$this->user_model->update_data($data,$this->input->post("username"));
+			$this->session->set_flashdata('msg', 'Account successfully updated.');
+            redirect(base_url() . "login_controller/changepwd");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		 } 
+		//else {
+        //     $this->change_pwd();
+        // }
+    }
 
 
-
-
+			
+	
 
 
 
@@ -1811,21 +1811,7 @@ class login_controller extends CI_Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 
 
 

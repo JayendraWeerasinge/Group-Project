@@ -29,17 +29,22 @@
 					</div>
 					<div class="form-group">
 						<label>New Passward</label>
-						<input type="text" class="form-control" name='npassward' placeholder="Enter New Passward"/>
-						
-					</div>
+                        <input type="text" class="form-control" name='npassward' id="password2" placeholder="Enter New Passward"/>
+						<span toggle="#password2" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+						<span class="text-danger"><?php echo form_error('password') ?></span>
+                    </div>
+                    
+
 					<div class="form-group">
 						<label>Confirm Passward</label>
-						<input type="text" class="form-control" name='cpassward' placeholder="Re-Enter Passward"/>
+                        <input type="text" class="form-control" name='cpassward' id="password2" placeholder="Re-Enter Passward"/>
+                        <span toggle="#password1" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+						<span class="text-danger"><?php echo form_error('cpassward') ?></span>
                         <br>
                         <br>
 
                         <div class="form-group form-check">
-						<button type="submit" class="btn btn-primary" name="submit" value="submit">Confirm</button>
+						<button type="submit" class="btn btn-primary" name="submit" value="submit">Change Passward</button>
 					</div> 
                     </form>
 					</hr>
@@ -65,3 +70,19 @@
 
 <?php include 'footer.php';?>
 </body>
+</html>
+<script>
+    $(document).ready(function(){
+
+        $(".toggle-password").click(function() {
+
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+    });
+</script>
